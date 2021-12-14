@@ -31,13 +31,21 @@
     <div class=<%= todo.completed %>>
       <b>Task:</b> <%= todo.task %>
       <br>
-      <b>Completed:</b> 
 
+      <b>Completed:</b> 
       <span class="completed-status">
-      <%= todo.completed %>
+        <%= todo.completed %>
       <span>
 
-      <button type="button">Complete Task</button>
+      <button 
+        data-todo-id=<%= todo.id %> 
+        data-todo-complete=<%= todo.completed %>
+        onClick="completeTask(this)"
+      >
+        <br>
+
+        Complete Task
+      </button>
     </div>
   <% end %>
 </p>
@@ -52,4 +60,22 @@
       document.getElementsByClassName(completed)[0].style.visibility = 'visible';
     }
   }
+
+  function completeTask(el) {
+    // send request to complete task 
+    const Http = new XMLHttpRequest();
+    const url='localhost:3000/todo_items/:id';
+    Http.open("PUT", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+      console.log(Http.responseText)
+    }
+    // Assuming successful requrest, update Markup indicating completed task
+    console.log(el.dataset.todoId)
+    console.log(el.dataset.todoComplete)
+  }
+
+
+
 </script>

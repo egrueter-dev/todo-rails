@@ -31,7 +31,13 @@
     <div class=<%= todo.completed %>>
       <b>Task:</b> <%= todo.task %>
       <br>
-      <b>Completed:</b> <%= todo.completed %>
+      <b>Completed:</b> 
+
+      <span class="completed-status">
+      <%= todo.completed %>
+      <span>
+
+      <button type="button">Complete Task</button>
     </div>
   <% end %>
 </p>

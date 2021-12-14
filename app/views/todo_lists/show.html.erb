@@ -19,8 +19,8 @@
   <% @todos.each do |todo, i| %>
     <br>
     <div class=<%= todo.completed %>>
-      Task: <%= todo.task %>
-      <span>Completed: <%= todo.completed %></span>
+      <b>Task:</b> <%= todo.task %>
+      <b>Completed:</b> <%= todo.completed %>
     </div>
   <% end %>
 </p>

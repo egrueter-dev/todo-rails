@@ -1,9 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Subject:</strong>
-  <%= @todo_list.subject %>
+  <%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
+  <%= link_to 'Back', todo_lists_path %>
 </p>
 
-<%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
-<%= link_to 'Back', todo_lists_path %>
+<p>
+  <strong>
+  Subject:
+  <%= @todo_list.subject %>
+  </strong>
+</p>
+
+<%= link_to "New Todo", new_todo_item_path(@todo_list) %>
+
+<p>
+  <b> Todos: </b>
+  <% @todos.each do |todo, i| %>
+    <br>
+    <div class=<%= todo.completed %>>
+      Task: <%= todo.task %>
+      <span>Completed: <%= todo.completed %></span>
+    </div>
+  <% end %>
+</p>

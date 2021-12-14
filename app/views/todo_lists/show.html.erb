@@ -36,6 +36,8 @@
   <% end %>
 </p>
 
+<%= button_to "clear completed", todo_list_clear_completed_path(@todo_list) %>
+
 <script>
   function filterTodos(completed) {
     if (document.getElementsByClassName(completed)[0].style.visibility !== 'hidden')

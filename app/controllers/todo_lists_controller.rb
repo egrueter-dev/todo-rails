@@ -11,6 +11,11 @@ class TodoListsController < ApplicationController
     @todos = @todo_list.todo_items
   end
 
+  def clear_completed
+    TodoItem.where(todo_list_id: params[:todo_list_id], completed: true).destroy_all
+    redirect_to todo_list_path(params[:todo_list_id]) and return
+  end
+
   # GET /todo_lists/new
   def new
     @todo_list = TodoList.new

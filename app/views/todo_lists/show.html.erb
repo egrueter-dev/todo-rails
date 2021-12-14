@@ -65,15 +65,18 @@
     // send request to complete task 
     const Http = new XMLHttpRequest();
     const url='localhost:3000/todo_items/:id';
+
     Http.open("PUT", url);
-    Http.send();
+
+    Http.send({
+      id: el.dataset.todoId
+    });
 
     Http.onreadystatechange = (e) => {
       console.log(Http.responseText)
     }
-    // Assuming successful requrest, update Markup indicating completed task
-    console.log(el.dataset.todoId)
-    console.log(el.dataset.todoComplete)
+    // console.log(el.dataset.todoId)
+    // console.log(el.dataset.todoComplete)
   }
 
 

@@ -12,7 +12,7 @@
   </strong>
 </p>
 
-<%= link_to "New Todo", new_todo_item_path(@todo_list) %>
+<%= link_to "New Todo", new_todo_list_todo_item_path(@todo_list) %>
 
 <div> 
   <b>Show Active Todo's</b>
@@ -54,31 +54,17 @@
 
 <script>
   function filterTodos(completed) {
-    if (document.getElementsByClassName(completed)[0].style.visibility !== 'hidden')
-      document.getElementsByClassName(completed)[0].style.visibility = 'hidden';
-    else {
-      document.getElementsByClassName(completed)[0].style.visibility = 'visible';
-    }
+    var elements = [...document.getElementsByClassName(completed)];
+
+    elements.forEach(
+       element => { 
+        if (element.style.visibility !== 'hidden')
+          element.style.visibility = 'hidden';
+        else {
+          element.style.visibility = 'visible';
+        }
+      }
+    );
   }
-
-  function completeTask(el) {
-    // send request to complete task 
-    const Http = new XMLHttpRequest();
-    const url='localhost:3000/todo_items/:id';
-
-    Http.open("PUT", url);
-
-    Http.send({
-      id: el.dataset.todoId
-    });
-
-    Http.onreadystatechange = (e) => {
-      console.log(Http.responseText)
-    }
-    // console.log(el.dataset.todoId)
-    // console.log(el.dataset.todoComplete)
-  }
-
-
 
 </script>

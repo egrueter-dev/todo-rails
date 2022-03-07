@@ -12,7 +12,9 @@ class TodoItemsController < ApplicationController
 
   # GET /todo_items/new
   def new
+    @todo_list_id = todo_list_id
     @todo_item = TodoItem.new
+    @todo_item.todo_list_id = todo_list_id
   end
 
   # GET /todo_items/1/edit
@@ -65,5 +67,9 @@ class TodoItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def todo_item_params
       params.require(:todo_item).permit(:todo_list_id, :task, :completed)
+    end
+
+    def todo_list_id
+      params.permit(:todo_list_id)[:todo_list_id]
     end
 end
